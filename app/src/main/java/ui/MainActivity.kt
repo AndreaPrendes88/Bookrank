@@ -1,29 +1,27 @@
 package ui
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookrank.R
+import com.example.bookrank.databinding.ActivityIntroBinding
 
-class MainActivity :AppCompatActivity() {
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    override fun onCreate(savedInstanceState: Bundle ?) {
-        setTheme(R.style.Theme_Bookrank)
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_intro)
 
-        //Añadimos botón de la lupa
-        val btnlupa = findViewById<ImageButton>(R.id.btn_lupa)
-        // Establecer el OnclickListener para el botón de la lupa
-        btnlupa.setOnClickListener {
+        //Añadimos los botones de la Activity
+        val btnLupa = findViewById<ImageButton>(R.id.btnLupa)
+        val btnLibro = findViewById<ImageButton>(R.id.btnLibros)
+        val btnEstadisticas = findViewById<ImageButton>(R.id.btnEstadisticas)
 
-     //      //Crea un Intent para iniciar la busqueda
-     //       val intent = Intent (this, buscarLibro::class.java)
-            // Con la lupa tiene que ir a la activity donde salga la opción de busqueda
-     //       startActivity(intent)
+        //Añadimos listener para btnLupa
+        btnLupa.setOnClickListener {
+            //Crear Intent
+            val intent = Intent(this, BuscarActivity::class.java)
+            startActivity(intent)
         }
-
+        }
     }
-}
