@@ -7,20 +7,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookrank.R
 
-
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var btnLupa: ImageButton
-    private lateinit var btnLibro: ImageButton
-    private lateinit var btnEstadisticas: ImageButton
+class EstadisticaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
         //Añadimos los botones de la Activity
-        btnLupa = findViewById(R.id.btnLupa)
-        btnLibro = findViewById(R.id.btnLibros)
-        btnEstadisticas = findViewById(R.id.btnEstadisticas)
+        val btnLupa = findViewById<ImageButton>(R.id.btnLupa)
+        val btnLibro = findViewById<ImageButton>(R.id.btnLibros)
+        val btnEstadisticas = findViewById<ImageButton>(R.id.btnEstadisticas)
 
         //Añadimos listener para btnLupa
         btnLupa.setOnClickListener {
@@ -28,13 +23,16 @@ class MainActivity : AppCompatActivity() {
 
             try {
                 // Crear Intent para iniciar la actividad de búsqueda
-                val intent = Intent(this, ui.BuscarActivity::class.java)
+                val intent = Intent(this, BuscarActivity::class.java)
                 startActivity(intent)
             } catch (e: Exception) {
                 // Si hay un error al intentar iniciar la actividad, lo mostramos
-                Toast.makeText(this, "Error al iniciar la actividad: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Error al iniciar la actividad: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
 }
-

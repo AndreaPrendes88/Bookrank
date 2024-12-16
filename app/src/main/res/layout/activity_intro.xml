@@ -25,10 +25,10 @@
 
     <ImageButton
         android:id="@+id/btnLupa"
-        android:layout_width="98dp"
-        android:layout_height="98dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="28dp"
         android:background="@color/lightlavender"
         android:contentDescription="@string/btnLupa"
         android:src="@drawable/_03_lupa"
@@ -40,8 +40,8 @@
 
     <ImageButton
         android:id="@+id/btnLibros"
-        android:layout_width="98dp"
-        android:layout_height="98dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="35dp"
         android:background="@color/lightlavender"
         android:contentDescription="@string/btn_libros"
@@ -55,8 +55,8 @@
 
     <ImageButton
         android:id="@+id/btnEstadisticas"
-        android:layout_width="98dp"
-        android:layout_height="98dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="35dp"
         android:background="@color/lightlavender"

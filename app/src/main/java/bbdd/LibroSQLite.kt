@@ -4,6 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.bookrank.libros.Libro
+
 
 /**
  * Aquí se creará el CRUD de la Base de datos
@@ -12,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper
  * U - Update - actualizar un registro
  * D - Delete - borrar un registro
 */
-abstract class BuscarLibroSQLite(context: Context) :
+ class LibroSQLite(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_NAME = "buscarLibro.db"
@@ -42,9 +44,9 @@ abstract class BuscarLibroSQLite(context: Context) :
      *      @param libroTitulo
      *      @return el listado de libros con ese título
      */
-    fun getListaPorTitulo(libroTitulo: String): List<LibroNuevoRegistro> { //<- Preguntar si esta sería la lista
+    fun getListaPorTitulo(libroTitulo: String): List<Libro> { //<- Preguntar si esta sería la lista
         val db = readableDatabase // Accedemos en modo lectura a la BBDD
-        val listaLibros = mutableListOf<LibroNuevoRegistro>()
+        val listaLibros = mutableListOf<Libro>()
 
         //Recorrer los valores de la consulta
         try {
@@ -60,7 +62,7 @@ abstract class BuscarLibroSQLite(context: Context) :
                         val isbn = cursor.getString(cursor.getColumnIndexOrThrow("isbn"))
 
                         //Crear el objeto nuevoLibro con los datos anteriores y los añadimos a la lista
-                        val nuevoLibro = LibroNuevoRegistro(
+                        val nuevoLibro = Libro(
                             titulo,
                             autor,
                             editorial,
@@ -94,7 +96,7 @@ abstract class BuscarLibroSQLite(context: Context) :
     }
 
     // Inserta un libro en la BBDD
-    fun insertarLibro(libro: LibroNuevoRegistro): Long {
+    fun insertarLibro(libro: Libro): Long {
         val db = writableDatabase
         val values =  ContentValues().apply {
             put("titulo", libro.titulo)

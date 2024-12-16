@@ -8,27 +8,91 @@
     android:background="@color/lightlavender"
     tools:context="ui.BuscarActivity">
 
-    <SearchView
+
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/searchLibro"
         android:layout_width="365dp"
         android:layout_height="72dp"
         android:background="@color/lightgrey"
         android:elevation="40dp"
+        app:actionViewClass="android.widget.SearchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintVertical_bias="0.046"
+        app:showAsAction="ifRoom"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:contentDescription="@string/bot_n_inicia_busqueda"
+        android:text="@string/btnBuscar"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/resultLibros"
-        android:layout_width="366dp"
-        android:layout_height="582dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="373dp"
+        android:layout_height="580dp"
+        android:layout_marginBottom="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnLupa"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@color/lightlavender"
+        android:contentDescription="@string/btnLupa"
+        android:src="@drawable/_03_lupa"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchLibro" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/_03_lupa" />
+
+    <ImageButton
+        android:id="@+id/btnLibros"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="28dp"
+        android:background="@color/lightlavender"
+        android:contentDescription="@string/btn_libros"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/_01_libros" />
+
+    <ImageButton
+        android:id="@+id/btnEstadisticas"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@color/lightlavender"
+        android:clickable="true"
+        android:contentDescription="@string/btn_estad"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnLibros"
+        app:srcCompat="@drawable/_05_estadstico" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

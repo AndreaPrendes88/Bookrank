@@ -15,6 +15,9 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    // Activity Buscar
+    <string name="btnBuscar">Botón inicia busqueda</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -52,4 +55,6 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="Introduce_titulo">Name</string>
+    <string name="button">Button</string>
+    <string name="bot_n_inicia_busqueda">Botón inicia busqueda</string>
 </resources>
