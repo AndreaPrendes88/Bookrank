@@ -28,11 +28,23 @@ class MainActivity : AppCompatActivity() {
 
             try {
                 // Crear Intent para iniciar la actividad de búsqueda
-                val intent = Intent(this, ui.BuscarActivity::class.java)
+                val intent = Intent(this, BuscarActivity::class.java)
                 startActivity(intent)
             } catch (e: Exception) {
                 // Si hay un error al intentar iniciar la actividad, lo mostramos
                 Toast.makeText(this, "Error al iniciar la actividad: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        btnLibro.setOnClickListener {
+            Toast.makeText(this,"Boton libro presionado", Toast.LENGTH_SHORT).show()
+
+            try{
+                //Crear Intent para iniciar actividad de Biblioteca
+                val intent = Intent(this, BibliotecaActivity::class.java)
+                startActivity(intent)
+            } catch(e:Exception) {
+                Toast.makeText(this, "Error al entrar a tu biblioteca: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }

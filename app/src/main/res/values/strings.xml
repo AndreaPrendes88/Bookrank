@@ -17,6 +17,11 @@
 
     // Activity Buscar
     <string name="btnBuscar">Botón inicia busqueda</string>
+    <string name="hint">Introduce un título</string>
+
+    //Activity Biblioteca
+    <string name="listaTitulo">Titulo de la Activity</string>
+    <string name="mi_biblioteca">Mi Biblioteca</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -57,4 +62,5 @@
     <string name="Introduce_titulo">Name</string>
     <string name="button">Button</string>
     <string name="bot_n_inicia_busqueda">Botón inicia busqueda</string>
+
 </resources>

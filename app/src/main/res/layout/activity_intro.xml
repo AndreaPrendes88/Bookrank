@@ -58,7 +58,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="28dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="28dp"
         android:background="@color/lightlavender"
         android:contentDescription="@string/btn_estad"
         android:src="@drawable/_05_estadstico"

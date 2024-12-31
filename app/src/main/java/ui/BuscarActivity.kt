@@ -1,78 +1,109 @@
 package ui
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.widget.Button
-import android.widget.SearchView
-import android.widget.Toast
+import android.util.Log
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookrank.R
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import com.example.bookrank.api.OpenLibraryApi
-import com.example.bookrank.api.OpenLibraryResponse
+import com.example.bookrank.api.RetrofitClient
+import com.example.bookrank.ui.BookAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-open class BuscarActivity : AppCompatActivity() {
-
-    //Añadimos los eventos de la Activity
-    lateinit var btnBuscar: Button
-    lateinit var resultLibros: RecyclerView
-
+open class BuscarActivity: AppCompatActivity() {
+    private lateinit var recyclerView: RecyclerView
+ //   private lateinit var bookAdapter: BookAdapter
+  //  private var booksList: List<BookAdapter.BookData> = emptyList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buscar)
+        showLog("Iniciando los componentes")
 
-        btnBuscar = findViewById(R.id.btnBuscar)
-        resultLibros = findViewById(R.id.resultLibros)
+        //Declaramos los componentes del Activity
+        val resultLibros = findViewById<RecyclerView>(R.id.resultLibros)
+        val searchLibro = findViewById<SearchView>(R.id.searchLibro)
 
-        fun onCreateOptionsMenu(menu: Menu?): Boolean {
-            //Inflar el menú desde el archivo XML
-            val searchItem = menu?.findItem(R.id.searchMenuLibro)
-            val searchLibro = searchItem?.actionView as SearchView
+        //Configuración RecyclerView
+        recyclerView = resultLibros
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-            //Configurar el comportamiento del searchView
-            searchLibro.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                //Se ejecuta cuando el usuacio envía la búsqueda
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return true
+        searchLibro.setOnQueryTextListener(createSearchListener(searchLibro))
+    }
+
+    //Creamos el listener del SearchView
+    private fun createSearchListener(searchLibro: SearchView): SearchView.OnQueryTextListener {
+        return object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    showLog(it) //Registra el texto en el log
+                    realizarBusqueda(query) //Realiza la busqueda
                 }
+                searchLibro.clearFocus() //Oculta el teclado y quita el foco
+                return true
+            }
 
-                // se ejecuta mientras el usuario escribe
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return true
-                }
-            })
-            // Este return es necesario para indicar que el menú ha sido correctamente creado e inflado
-            return true
-        }
-        //Añadimos el listener del botón btnBuscar
-           btnBuscar.setOnClickListener {
-            try {
-                // Crear Intent para iniciar la actividad de búsqueda
-                val intent = Intent(this, OpenLibraryResponse::class.java)
-                startActivity(intent)
-                val BASE_URL = "https://openlibrary.org/"
-                val retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-
-                val api = retrofit.create(OpenLibraryApi::class.java)
-
-                // Realizar la llamada
-                val call = api.searchBooks("Grey")
-
-            } catch (e: Exception) {
-                // Si hay un error al intentar iniciar la actividad, lo mostramos
-                Toast.makeText(
-                    this,
-                    "Error al iniciar la busqueda: ${e.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+            //Aparecen resultados a medida que se escribe el texto en la barra de busqueda
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
             }
         }
+    }
+
+    //Función para realizar la búsqueda en la API
+    private fun realizarBusqueda(query: String) {
+        //Registro para verificar el texto de búsqueda
+        showLog("Buscando: $query")
+        fetchBooks(query)
+    }
+
+    private fun fetchBooks(query: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                // Llama al método suspend
+                val response = RetrofitClient.api.searchBooks(query)
+
+                //Procesa la respuesta y genera la lista de libros
+                val books = response.docs.map {
+                    BookAdapter.BookData(
+                        title = it.title,
+                        author_name = it.author_name?.firstOrNull() ?: "Autor desconocido"
+                       // coverUrl = "https://covers.openlibrary.org/b/id/${it.cover_i}-L.jpg"
+                    )
+                }
+
+                // Procesa el resultado en el hilo principal
+                withContext(Dispatchers.Main) {
+                    if (response.docs.isNotEmpty()) {
+                        // Actualiza la interfaz de usuario con los resultados
+                        updateRecyclerView(books)
+                        showLog("Libros encontrados: ${response.docs}")
+                    } else {
+                        showLog("No se encontraron libros para la consulta: $query")
+                    }
+                }
+            } catch (e: Exception) {
+                // Maneja el error
+                withContext(Dispatchers.Main) {
+                    showLog("Error al buscar libros: ${e.message}")
+                }
+            }
+        }
+
+    }
+
+    // Función para actualizar el RecyclerView con los datos obtenidos
+    private fun updateRecyclerView(books: List<BookAdapter.BookData>) {
+        val resultLibros = findViewById<RecyclerView>(R.id.resultLibros)
+        val adapter = BookAdapter(books)
+        resultLibros.adapter = adapter
+    }
+
+    private fun showLog(message: String) {
+        Log.d("BuscarActivity", message)
     }
 }
 

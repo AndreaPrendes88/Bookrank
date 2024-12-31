@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.bookrank.libros.Libro
+import com.example.bookrank.ui.BookAdapter
 
 
 /**
@@ -44,9 +44,9 @@ import com.example.bookrank.libros.Libro
      *      @param libroTitulo
      *      @return el listado de libros con ese título
      */
-    fun getListaPorTitulo(libroTitulo: String): List<Libro> { //<- Preguntar si esta sería la lista
+    fun getListaPorTitulo(libroTitulo: String): List<BookAdapter.BookData> { //<- Preguntar si esta sería la lista
         val db = readableDatabase // Accedemos en modo lectura a la BBDD
-        val listaLibros = mutableListOf<Libro>()
+        val listaLibros = mutableListOf<BookAdapter.BookData>()
 
         //Recorrer los valores de la consulta
         try {
@@ -62,11 +62,11 @@ import com.example.bookrank.libros.Libro
                         val isbn = cursor.getString(cursor.getColumnIndexOrThrow("isbn"))
 
                         //Crear el objeto nuevoLibro con los datos anteriores y los añadimos a la lista
-                        val nuevoLibro = Libro(
+                        val nuevoLibro = BookAdapter.BookData(
                             titulo,
                             autor,
-                            editorial,
-                            isbn
+                            //editorial,
+                            //isbn
                         )
                         listaLibros.add(nuevoLibro)
                     } while (cursor.moveToNext())
@@ -96,13 +96,13 @@ import com.example.bookrank.libros.Libro
     }
 
     // Inserta un libro en la BBDD
-    fun insertarLibro(libro: Libro): Long {
+    fun insertarLibro(libro: BookAdapter.BookData): Long {
         val db = writableDatabase
         val values =  ContentValues().apply {
-            put("titulo", libro.titulo)
-            put("autor", libro.autor)
-            put("editorial", libro.editorial)
-            put("isbn", libro.isbn)
+            put("titulo", libro.title)
+            //put("autor", libro.author_name)
+            //put("editorial", libro.editorial)
+            //put("isbn", libro.isbn)
         }
         val numRowId = db.insert("libros", null, values)
         return numRowId
