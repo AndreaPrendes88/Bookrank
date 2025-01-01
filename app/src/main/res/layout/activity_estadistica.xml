@@ -8,63 +8,6 @@
     android:background="@color/lightlavender"
     tools:context="ui.EstadisticaActivity">
 
-
-    <ImageButton
-        android:id="@+id/btnLupa"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="28dp"
-        android:background="@color/lightlavender"
-        android:clickable="true"
-        android:contentDescription="@string/btnLupa"
-        android:focusable="true"
-        android:src="@drawable/_03_lupa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnLibros"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.978" />
-
-    <ImageButton
-        android:id="@+id/btnLibros"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="28dp"
-        android:background="@color/lightlavender"
-        android:clickable="true"
-        android:contentDescription="@string/btn_libros"
-        android:focusable="true"
-        android:src="@drawable/_01_libros"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
-
-    <ImageButton
-        android:id="@+id/btnEstadisticas"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="28dp"
-        android:background="@color/lightlavender"
-        android:clickable="true"
-        android:contentDescription="@string/btn_estad"
-        android:focusable="true"
-        android:src="@drawable/_05_estadstico"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLibros"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="345dp"
@@ -79,5 +22,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <include layout="@layout/botones_navegacion"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

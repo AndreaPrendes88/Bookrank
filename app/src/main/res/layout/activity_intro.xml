@@ -23,50 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageButton
-        android:id="@+id/btnLupa"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="28dp"
-        android:background="@color/lightlavender"
-        android:contentDescription="@string/btnLupa"
-        android:src="@drawable/_03_lupa"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnLibros" />
-
-
-    <ImageButton
-        android:id="@+id/btnLibros"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="35dp"
-        android:background="@color/lightlavender"
-        android:contentDescription="@string/btn_libros"
-        android:src="@drawable/_01_libros"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnEstadisticas"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="28dp"
-        android:background="@color/lightlavender"
-        android:contentDescription="@string/btn_estad"
-        android:src="@drawable/_05_estadstico"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLibros" />
-
+    <include layout="@layout/botones_navegacion"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,5 @@
 package ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.widget.SearchView
@@ -14,13 +13,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-open class BuscarActivity: AppCompatActivity() {
+open class BuscarActivity: MainActivity() {
     private lateinit var recyclerView: RecyclerView
- //   private lateinit var bookAdapter: BookAdapter
-  //  private var booksList: List<BookAdapter.BookData> = emptyList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buscar)
+        setupNavigationButtons() //Llamamos al método para iniciar los botones
         showLog("Iniciando los componentes")
 
         //Declaramos los componentes del Activity
@@ -92,7 +90,6 @@ open class BuscarActivity: AppCompatActivity() {
                 }
             }
         }
-
     }
 
     // Función para actualizar el RecyclerView con los datos obtenidos

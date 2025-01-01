@@ -14,10 +14,6 @@
         android:theme="@style/Theme.Bookrank">
 
         <activity
-            android:name="ui.BuscarActivity">
-        </activity>
-
-        <activity
             android:name="ui.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -25,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name="ui.BuscarActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
@@ -33,8 +30,15 @@
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
+
+        <activity android:name="ui.BibliotecaActivity"
+            tools:ignore="DuplicateActivity">
+            <!-- No es necesario el intent-filter si no es MAIN -->
+        </activity>
+
         <activity android:name=".api.OpenLibraryResponse"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

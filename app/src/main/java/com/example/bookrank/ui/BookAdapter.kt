@@ -1,8 +1,10 @@
 package com.example.bookrank.ui
 
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookrank.R
@@ -29,7 +31,7 @@ class BookAdapter(private val books: List<BookData>) :
             override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
                 val book = books[position]
                 holder.title.text = book.title
-                holder.author.text = book.author_name.toString()
+                holder.author.text = book.author_name
 
              /*   // Cargar imagen si se tiene la URL de la portada
                 Glide.with(holder.itemView.context)
