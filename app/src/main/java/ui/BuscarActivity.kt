@@ -67,9 +67,9 @@ open class BuscarActivity: MainActivity() {
                 //Procesa la respuesta y genera la lista de libros
                 val books = response.docs.map {
                     BookAdapter.BookData(
-                        title = it.title,
-                        author_name = it.author_name?.firstOrNull() ?: "Autor desconocido"
-                       // coverUrl = "https://covers.openlibrary.org/b/id/${it.cover_i}-L.jpg"
+                        title = it.title, //-> ESTAMOS CON ESTE ERROR!!!!!
+                        author_name = it.author_name?.firstOrNull() ?: "Autor desconocido",
+                        cover_i = it.cover_i
                     )
                 }
 

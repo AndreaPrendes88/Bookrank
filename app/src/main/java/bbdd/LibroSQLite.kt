@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.bookrank.libro.Libro
 import com.example.bookrank.ui.BookAdapter
 
 
@@ -44,7 +45,7 @@ import com.example.bookrank.ui.BookAdapter
      *      @param libroTitulo
      *      @return el listado de libros con ese título
      */
-    fun getListaPorTitulo(libroTitulo: String): List<BookAdapter.BookData> { //<- Preguntar si esta sería la lista
+    fun getListaPorTitulo(libroTitulo: String): MutableList<BookAdapter.BookData> { //<- Preguntar si esta sería la lista
         val db = readableDatabase // Accedemos en modo lectura a la BBDD
         val listaLibros = mutableListOf<BookAdapter.BookData>()
 
@@ -58,6 +59,7 @@ import com.example.bookrank.ui.BookAdapter
                         //Valores de un libro
                         val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
                         val autor = cursor.getString(cursor.getColumnIndexOrThrow("autor"))
+                        val coverId = cursor.getString(cursor.getColumnIndexOrThrow("coverId"))
                         val editorial = cursor.getString(cursor.getColumnIndexOrThrow("editorial"))
                         val isbn = cursor.getString(cursor.getColumnIndexOrThrow("isbn"))
 
@@ -65,6 +67,7 @@ import com.example.bookrank.ui.BookAdapter
                         val nuevoLibro = BookAdapter.BookData(
                             titulo,
                             autor,
+                            coverId,
                             //editorial,
                             //isbn
                         )
@@ -96,11 +99,11 @@ import com.example.bookrank.ui.BookAdapter
     }
 
     // Inserta un libro en la BBDD
-    fun insertarLibro(libro: BookAdapter.BookData): Long {
+    fun insertarLibro(libro: Libro): Long {
         val db = writableDatabase
         val values =  ContentValues().apply {
             put("titulo", libro.title)
-            //put("autor", libro.author_name)
+            put("autor", libro.author_name)
             //put("editorial", libro.editorial)
             //put("isbn", libro.isbn)
         }

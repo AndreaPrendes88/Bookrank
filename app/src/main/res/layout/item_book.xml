@@ -8,14 +8,9 @@
 
     <ImageView
         android:id="@+id/bookCover"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="76dp"
-        android:contentDescription="Portada del libro"
-        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/coverURL" />
 
     <TextView
         android:id="@+id/bookTitle"
@@ -46,5 +41,19 @@
         app:layout_constraintTop_toBottomOf="@id/bookTitle"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Autor del libro" />
+
+    <ImageView
+        android:id="@+id/btnAñadir"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="124dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/btnAñadir"
+        app:layout_constraintStart_toStartOf="@+id/bookCover"
+        app:layout_constraintTop_toTopOf="@+id/bookCover"
+        app:srcCompat="@drawable/anadir"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

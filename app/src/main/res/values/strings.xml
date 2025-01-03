@@ -18,6 +18,9 @@
     // Activity Buscar
     <string name="btnBuscar">Botón inicia busqueda</string>
     <string name="hint">Introduce un título</string>
+    <string name="btnAñadir">Anadir</string>
+    <string name="Introduce_titulo">Name</string>
+    <string name="button">Button</string>
 
     //Activity Biblioteca
     <string name="listaTitulo">Titulo de la Activity</string>
@@ -59,8 +62,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="Introduce_titulo">Name</string>
-    <string name="button">Button</string>
-    <string name="bot_n_inicia_busqueda">Botón inicia busqueda</string>
+
 
 </resources>
