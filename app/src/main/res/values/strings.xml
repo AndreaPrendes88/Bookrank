@@ -15,16 +15,31 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    // Activity Buscar
-    <string name="btnBuscar">Botón inicia busqueda</string>
+    // Activity Buscar/ItemBook
     <string name="hint">Introduce un título</string>
-    <string name="btnAñadir">Anadir</string>
-    <string name="Introduce_titulo">Name</string>
-    <string name="button">Button</string>
+    <string name="btnAñadir">Botón para añadir</string>
+    <string name="Introduce_titulo">Introduce un título</string>
+    <string name="bookCover">Diseño de la portada</string>
+    <string name="bookAuthor">Nombre del author</string>
+    <string name="bookTitle">Titulo del libro</string>
+    <string name="btnFavorito">Lista de libros favoritos</string>
+    <string name="btnPendiente">Lista de libros pendientes</string>
+    <string name="btnLeido">Lista de libros leídos</string>
+
 
     //Activity Biblioteca
     <string name="listaTitulo">Titulo de la Activity</string>
     <string name="mi_biblioteca">Mi Biblioteca</string>
+    <string name="imgLeido">Imagen de libros leídos</string>"
+    <string name="imgPendientes">Imagen de libros pendientes</string>
+    <string name="imgFavoritos">Imagen de libros favoritos</string>
+    <string name="txtLeido">Texto de libros leídos</string>"
+    <string name="txtPendientes">Texto de libros pendientes</string>
+    <string name="txtFavoritos">Texto de libros favoritos</string>
+    <string name="bookTitleAdd">Titulo del libro</string>"
+    <string name="bookAuthorAdd">Author del libro</string>
+    <string name="bookCoverAdd">Portada del libro</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bookCoverAdd"
+        style="@style/coverURL"
+        android:layout_width="70dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="176dp"
+        android:contentDescription="@string/bookCoverAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bookTitleAdd"
+        android:layout_width="70dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/advent_pro_medium"
+        android:maxLines="1"
+        android:text="TITULO"
+        android:textAlignment="center"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:contentDescription="@string/bookTitleAdd"
+        app:layout_constraintStart_toStartOf="@+id/bookCoverAdd"
+        app:layout_constraintTop_toBottomOf="@+id/bookCoverAdd"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/bookAuthorAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="Autor"
+        android:fontFamily="@font/advent_pro_medium"
+        android:contentDescription="@string/bookAuthorAdd"
+        app:layout_constraintEnd_toEndOf="@+id/bookTitleAdd"
+        app:layout_constraintStart_toStartOf="@+id/bookTitleAdd"
+        app:layout_constraintTop_toBottomOf="@+id/bookTitleAdd"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="ui.BuscarActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
@@ -30,12 +29,15 @@
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
-
         <activity android:name="ui.BibliotecaActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
-
+        <activity android:name="ui.ItemBookActivity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity">
+            <!-- No es necesario el intent-filter si no es MAIN -->
+        </activity>
         <activity android:name=".api.OpenLibraryResponse"
             android:exported="true"
             tools:ignore="Instantiatable">

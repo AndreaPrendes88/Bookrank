@@ -15,10 +15,10 @@ import com.example.bookrank.ui.BookAdapter
  * U - Update - actualizar un registro
  * D - Delete - borrar un registro
 */
- class LibroSQLite(context: Context) :
+/* class LibroSQLite(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
-        private const val DATABASE_NAME = "buscarLibro.db"
+        private const val DATABASE_NAME = "biblioteca.db"
         private const val DATABASE_VERSION = 1
     }
 
@@ -27,13 +27,15 @@ import com.example.bookrank.ui.BookAdapter
      */
     override fun onCreate(db: SQLiteDatabase?) {
         val crearTablaLibros = """
-            CREATE TABLE libros(
+            CREATE TABLE estanteria(
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 titulo TEXT NOT NULL, 
                 autor TEXT NOT NULL, 
-                editorial TEXT NOT NULL, 
-                isbn TEXT NOT NULL
+                portada TEXT 
             )
+            /*
+            *Añadir editorial e isbn cuando sea necesario (TEXT NOT NULL)
+            */ 
         """.trimIndent()
 
         //Creamos la tabla
@@ -45,31 +47,32 @@ import com.example.bookrank.ui.BookAdapter
      *      @param libroTitulo
      *      @return el listado de libros con ese título
      */
-    fun getListaPorTitulo(libroTitulo: String): MutableList<BookAdapter.BookData> { //<- Preguntar si esta sería la lista
+
+    fun getListaPorTitulo(libroTitulo: String): MutableList<Libro> { //<- Preguntar si esta sería la lista
         val db = readableDatabase // Accedemos en modo lectura a la BBDD
-        val listaLibros = mutableListOf<BookAdapter.BookData>()
+        val listaLibros = mutableListOf<Libro>()
 
         //Recorrer los valores de la consulta
         try {
-            val consulta = "SELECT * FROM libros WHERE libroTitulo=? ORDER BY id DESC"
+            val consulta = "SELECT * FROM estanteria WHERE titulo=? ORDER BY id DESC"
             db.rawQuery(consulta, arrayOf(libroTitulo)).use { cursor ->
                 //Recorre los valores de la consulta
                 if (cursor.moveToFirst()) {
                     do {
-                        //Valores de un libro
+                        //Valores de Estantería -> Libro
                         val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
                         val autor = cursor.getString(cursor.getColumnIndexOrThrow("autor"))
-                        val coverId = cursor.getString(cursor.getColumnIndexOrThrow("coverId"))
-                        val editorial = cursor.getString(cursor.getColumnIndexOrThrow("editorial"))
-                        val isbn = cursor.getString(cursor.getColumnIndexOrThrow("isbn"))
+                       // val editorial = cursor.getString(cursor.getColumnIndexOrThrow("editorial"))
+                       // val isbn = cursor.getString(cursor.getColumnIndexOrThrow("isbn"))
+                        val portada = cursor.getBlob(cursor.getColumnIndexOrThrow("portada"))
 
                         //Crear el objeto nuevoLibro con los datos anteriores y los añadimos a la lista
-                        val nuevoLibro = BookAdapter.BookData(
+                        val nuevoLibro = Libro(
                             titulo,
                             autor,
-                            coverId,
                             //editorial,
                             //isbn
+                            portada.toString()
                         )
                         listaLibros.add(nuevoLibro)
                     } while (cursor.moveToNext())
@@ -81,7 +84,6 @@ import com.example.bookrank.ui.BookAdapter
                 e
             )
         } finally {
-            //Cerrar la BBDD
             db.close()
         }
         return listaLibros
@@ -94,22 +96,24 @@ import com.example.bookrank.ui.BookAdapter
      */
     // Actualización de la versión de la BBDD
     override fun onUpgrade(db: SQLiteDatabase?, viejaVersion: Int, nuevaVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS libros")
+        db?.execSQL("DROP TABLE IF EXISTS estanteria")
         onCreate(db)
     }
 
     // Inserta un libro en la BBDD
-    fun insertarLibro(libro: Libro): Long {
+ /*   fun insertarLibro(libro: Libro): Long {
         val db = writableDatabase
         val values =  ContentValues().apply {
             put("titulo", libro.title)
             put("autor", libro.author_name)
             //put("editorial", libro.editorial)
             //put("isbn", libro.isbn)
+            put("portada", libro.cover_i)
         }
-        val numRowId = db.insert("libros", null, values)
-        return numRowId
-    }
+        val result2 = db.insert("estanteria", null, values)
+        db.close()
+        return result2
+    }*/
 
     /**
      * METODO DELETE
@@ -118,8 +122,8 @@ import com.example.bookrank.ui.BookAdapter
      */
     fun borrarLibro(idLibro: Long): Int {
         val db = writableDatabase
-        val affectedRows = db.delete("libros", "id = ?", arrayOf(idLibro.toString()))
+        val affectedRows = db.delete("estanteria", "id = ?", arrayOf(idLibro.toString()))
         db.close()
         return affectedRows
     }
-}
+}*/

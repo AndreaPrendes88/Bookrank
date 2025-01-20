@@ -1,10 +1,10 @@
 package com.example.bookrank.libro
 
-class Libro (
+data class Libro(
     val title: String,
     val author_name: String,
-    val bookCover: Int,
-
+    val bookCover: String,
+    val tipoLista: String )//Aqui definimos si es Leido, Pendiente, Favorito
    // val editorial: String,
    // val isbn: String
-    )
+

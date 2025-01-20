@@ -37,9 +37,15 @@ open class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Boton libro presionado", Toast.LENGTH_SHORT).show()
             navigateToActivity(BibliotecaActivity::class.java)
         }
+
+        //Añadimos listener para btnEstadisticas que nos lleva a EstadisticaActivity
+        btnEstadisticas.setOnClickListener {
+            Toast.makeText(this,"Boton estadisticas presionado", Toast.LENGTH_SHORT).show()
+            navigateToActivity(EstadisticaActivity::class.java)
+        }
     }
 
-    fun navigateToActivity(targetActivity: Class<*>) {
+    private fun navigateToActivity(targetActivity: Class<*>) {
         try {
             val intent = Intent(this, targetActivity)
             startActivity(intent)

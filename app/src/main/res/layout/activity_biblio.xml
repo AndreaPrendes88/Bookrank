@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightlavender">
+
+    <TextView
+        android:id="@+id/listaTitulo"
+        android:layout_width="231dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="@string/texto_portada"
+        android:fontFamily="@font/advent_pro_medium"
+        android:text="@string/mi_biblioteca"
+        android:textAlignment="center"
+        android:textColor="@color/darkblue"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageView
+        android:id="@+id/imgLeido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/imgLeido"
+        app:layout_constraintEnd_toStartOf="@+id/txtLeido"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtLeido"
+        app:srcCompat="@drawable/icons8_done_30" />
+
+    <TextView
+        android:id="@+id/txtLeido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="96dp"
+        android:contentDescription="@string/txtLeido"
+        android:fontFamily="@font/advent_pro_medium"
+        android:text="Libros leídos"
+        android:textColor="@color/darkblue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvLibrosLeidos"
+        android:layout_width="405dp"
+        android:layout_height="168dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLeido" />
+
+    <ImageView
+        android:id="@+id/imgPend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/imgPendientes"
+        app:layout_constraintEnd_toStartOf="@+id/txtPendientes"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtPendientes"
+        app:srcCompat="@drawable/icons8_pendiente_48" />
+
+    <TextView
+        android:id="@+id/txtPendientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="208dp"
+        android:contentDescription="@string/txtPendientes"
+        android:fontFamily="@font/advent_pro_medium"
+        android:text="Libros pendientes"
+        android:textColor="@color/darkblue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLeido"
+        tools:ignore="HardcodedText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvLibrosPend"
+        android:layout_width="407dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPendientes" />
+
+    <ImageView
+        android:id="@+id/imgFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/imgFavoritos"
+        app:layout_constraintEnd_toStartOf="@+id/txtFavoritos"
+        app:layout_constraintTop_toTopOf="@+id/txtFavoritos"
+        app:srcCompat="@drawable/icons8_favorito_48" />
+
+    <TextView
+        android:id="@+id/txtFavoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="200dp"
+        android:contentDescription="@string/txtFavoritos"
+        android:fontFamily="@font/advent_pro_medium"
+        android:text="Libros favoritos"
+        android:textColor="@color/darkblue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPendientes"
+        tools:ignore="HardcodedText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvLibrosFav"
+        android:layout_width="408dp"
+        android:layout_height="191dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFavoritos">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/botones_navegacion"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/book_biblio" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

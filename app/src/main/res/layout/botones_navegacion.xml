@@ -14,14 +14,14 @@
         android:clickable="true"
         android:contentDescription="@string/btnLupa"
         android:focusable="true"
-        android:src="@drawable/_03_lupa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnLibros"
         app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.98"
-        app:srcCompat="@drawable/_03_lupa" />
+        app:srcCompat="@drawable/_03_lupa"
+        app:tint="@color/darkblue"/>
 
     <ImageButton
         android:id="@+id/btnLibros"
@@ -36,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/_01_libros" />
+        app:srcCompat="@drawable/_01_libros"
+        app:tint="@color/darkblue"/>
 
     <ImageButton
         android:id="@+id/btnEstadisticas"
@@ -51,5 +52,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.406"
         app:layout_constraintStart_toEndOf="@+id/btnLibros"
-        app:srcCompat="@drawable/_05_estadstico" />
+        app:srcCompat="@drawable/_05_estadstico"
+        app:tint="@color/darkblue"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
