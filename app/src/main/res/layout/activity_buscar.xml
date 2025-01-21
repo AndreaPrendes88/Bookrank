@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightlavender"
-    tools:context="ui.BuscarActivity">
+    tools:context=".ui.BuscarActivity">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchLibro"

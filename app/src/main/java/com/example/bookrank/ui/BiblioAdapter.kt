@@ -1,6 +1,7 @@
 package com.example.bookrank.ui
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bbdd.DatabaseHelper
+import com.bumptech.glide.Glide
 import com.example.bookrank.R
 import com.example.bookrank.libro.Libro
 
@@ -39,17 +41,34 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
         val libroB = librosBiblio[position]
         holder.tituloB.text = libroB.title
         holder.autorB.text = libroB.author_name
-        //holder.coverB.text = libroB.bookCover //TODO cambiar text por imagen
+        Log.d("BiblioAdapter","Lista de libros: $librosBiblio")
+
+        //Construir la URL de la portada
+        val coverUrl = libroB.bookCover?.let {
+            "https://covers.openlibrary.org/b/id/$it-M.jpg"
+        }
+
+        //Es para verificar que pasa el valor a Glide
+        Log.d("GlideURL", "Cargando imagen para el libro: ${libroB.bookCover}")
+        if (!coverUrl.isNullOrEmpty()){
+            Glide.with(holder.itemView.context)
+                .load(coverUrl) // Campo "cover" que contiene la URL de la imagen
+                .into(holder.coverB) // ImageView donde se mostrará la imagen
+            //holder.coverB.text = libroB.bookCover //TODO cambiar text por imagen
+        } else{
+            holder.coverB.setImageResource(R.drawable.placeholder_book_cover)
+        }
     }
 }
 
 fun cargarLibroPortipo(tipoLista: String, recyclerView: RecyclerView, context: Context) {
     //Usamos esa instancia para llamar al metodo
-    val libros = DatabaseHelper.getLibroPorLista(context, tipoLista)
+    val libros = DatabaseHelper.getLibroPorLista(context, tipoLista) as? List<Libro> ?: emptyList()
 
-
+    Log.d("cargarLibroPortipo", "Cargando libros para $tipoLista: $libros")
     //Configurar el adaptador y asignarlo al RecyclerView
-        val adapter = BiblioAdapter(libros as List<Libro>)
+        val adapter = BiblioAdapter(libros)
         recyclerView.adapter = adapter
     }
+
 

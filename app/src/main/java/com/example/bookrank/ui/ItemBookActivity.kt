@@ -1,16 +1,11 @@
-package ui
+package com.example.bookrank.ui
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import bbdd.DatabaseHelper
 import com.example.bookrank.R
-import com.example.bookrank.ui.BookAdapter
 
 
 /*

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bookrank">
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,33 +15,33 @@
         android:theme="@style/Theme.Bookrank">
 
         <activity
-            android:name="ui.MainActivity"
+            android:name="com.example.bookrank.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ui.BuscarActivity"
+        <activity android:name="com.example.bookrank.ui.BuscarActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
-        <activity android:name="ui.EstadisticaActivity"
+        <activity android:name="com.example.bookrank.ui.EstadisticaActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
-        <activity android:name="ui.BibliotecaActivity"
+        <activity android:name="com.example.bookrank.ui.BibliotecaActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
-        <activity android:name="ui.ItemBookActivity"
+        <activity android:name="com.example.bookrank.ui.ItemBookActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
         <activity android:name=".api.OpenLibraryResponse"
             android:exported="true"
-            tools:ignore="Instantiatable">
+            tools:ignore="Instantiatable,MissingClass">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

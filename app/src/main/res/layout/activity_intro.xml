@@ -8,7 +8,7 @@
     android:background="@color/lightlavender"
     android:backgroundTint="@color/lightlavender"
     android:visibility="visible"
-    tools:context="ui.MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:id="@+id/logotipo"

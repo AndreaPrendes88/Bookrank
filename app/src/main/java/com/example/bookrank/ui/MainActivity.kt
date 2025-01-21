@@ -1,4 +1,4 @@
-package ui
+package com.example.bookrank.ui
 
 import android.content.Intent
 import android.os.Bundle

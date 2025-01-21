@@ -150,9 +150,4 @@
         layout="@layout/botones_navegacion"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/book_biblio" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

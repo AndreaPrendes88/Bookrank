@@ -1,4 +1,4 @@
-package ui
+package com.example.bookrank.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bookrank.R
 import com.example.bookrank.api.RetrofitClient
 import com.example.bookrank.libro.Libro
-import com.example.bookrank.ui.BookAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
