@@ -1,37 +1,42 @@
 package ui
 
 import android.os.Bundle
-import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import bbdd.DatabaseHelper
-import com.bumptech.glide.Glide
 import com.example.bookrank.R
-import com.example.bookrank.libro.Libro
-import com.example.bookrank.ui.BookAdapter
+import com.example.bookrank.ui.cargarLibroPortipo
 
 
 open class BibliotecaActivity : MainActivity() {
-
-    private lateinit var bookCoverAdd: ImageView
-    private lateinit var book: Libro
-    private lateinit var databaseHelper: DatabaseHelper
-    private lateinit var rcvLibrosLeidos: RecyclerView
-    private lateinit var rcvLibrosPend: RecyclerView
-    private lateinit var rcvLibrosFav: RecyclerView
+    private lateinit var recyclerViewLeidos: RecyclerView
+    private lateinit var recyclerViewPend: RecyclerView
+    private lateinit var recyclerViewFav: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_biblio)
         setupNavigationButtons() //Llamamos al método para iniciar los botones
 
-        val bookCoverAdd = findViewById<ImageView>(R.id.bookCoverAdd)
+        //Declaración de los recyclerview
         val rcvLibrosLeidos = findViewById<RecyclerView>(R.id.rcvLibrosLeidos)
         val rcvLibrosPend = findViewById<RecyclerView>(R.id.rcvLibrosPend)
         val rcvLibrosFav = findViewById<RecyclerView>(R.id.rcvLibrosFav)
-        //recyclerView.layoutManager = LinearLayoutManager(this)
 
-        databaseHelper = DatabaseHelper(this)
+        //Inicialización de los recyclerview
+        recyclerViewLeidos = rcvLibrosLeidos
+        recyclerViewPend = rcvLibrosPend
+        recyclerViewFav = rcvLibrosFav
 
+        //Configuración RecyclerView
+        recyclerViewLeidos.layoutManager = LinearLayoutManager(this)
+        recyclerViewPend.layoutManager = LinearLayoutManager(this)
+        recyclerViewFav.layoutManager = LinearLayoutManager(this)
+
+        //Cargar datos en los RecyclerView
+        cargarLibroPortipo("leido", recyclerViewLeidos,this)
+        cargarLibroPortipo("pendiente", recyclerViewPend, this)
+        cargarLibroPortipo("favorito", recyclerViewFav, this)
     }
+
 }
 

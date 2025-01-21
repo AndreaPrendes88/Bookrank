@@ -11,7 +11,7 @@
         android:layout_width="70dp"
         android:layout_height="104dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="156dp"
         android:contentDescription="@string/bookCoverAdd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

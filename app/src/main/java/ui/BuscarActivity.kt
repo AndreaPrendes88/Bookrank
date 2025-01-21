@@ -33,7 +33,7 @@ open class BuscarActivity: MainActivity() {
         searchLibro.setOnQueryTextListener(createSearchListener(searchLibro))
     }
 
-    //Creamos el listener del SearchView
+    //Creamos el listener del SearchView (buscador)
     private fun createSearchListener(searchLibro: SearchView): SearchView.OnQueryTextListener {
         return object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

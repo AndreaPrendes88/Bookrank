@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.bookrank.libro.Libro
 
 
 class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -15,7 +16,46 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         private const val COLUMN_TITLE = "titulo"
         private const val COLUMN_AUTHOR = "autor"
         private const val COLUMN_COVER = "portada"
-        /*TODO -> añadir tipo listaprivate const val COLUMN_TYPE = "tipoLista"*/
+        private const val COLUMN_TYPE = "tipoLista"
+
+        private var instance:DatabaseHelper? = null
+            fun getInstance(context: Context): DatabaseHelper{
+                if (instance == null){
+                    instance = DatabaseHelper(context.applicationContext)
+                }
+                return instance!!
+            }
+        /**
+         * METODO READ -> Leer el registro
+         * @param nuevoLibro
+         * @return el listado de libros
+         * Para poder acceder desde otras funciones, se debe hacer que esta función sea un Método Estático (Companion Object)
+         */
+        fun getLibroPorLista(context: Context, tipoLista: String): Any {
+            val db = getInstance(context).readableDatabase
+            val listadoLibros = mutableListOf<Libro>()
+
+            try {
+                val consulta = "SELECT * FROM estanteria WHERE tipoLista=? ORDER BY id DESC"
+                db.rawQuery(consulta, arrayOf(tipoLista)).use { cursor ->
+                    if (cursor.moveToFirst()) {
+                        do {
+                            val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
+                            val autor = cursor.getString(cursor.getColumnIndexOrThrow("autor"))
+                            val portada = cursor.getString(cursor.getColumnIndexOrThrow("portada"))
+                            val tipoLista = cursor.getString(cursor.getColumnIndexOrThrow("tipoLista"))
+                            listadoLibros.add(Libro(titulo, autor, portada, tipoLista))
+                        } while (cursor.moveToNext())
+                    }
+                }
+            } catch (e: Exception) {
+                throw RuntimeException("Error al obtener la lista de libros con esta lista: ${e.message}", e)
+            } finally {
+                db.close()
+            }
+
+            return listadoLibros
+        }
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -58,50 +98,8 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         db.close()
         return result != -1L // Devuelve true si la inserción fue exitosa
     }
-/*
-    /**
-    * METODO READ -> Leer el registro
-    * @param nuevoLibro
-    * @return el listado de libros
-    */
-    fun getLibroPorLista(tipoLista: String): MutableList<Libro> {
-        val db = readableDatabase
-        val listadoLibros = mutableListOf<Libro>()
 
-        //Recorrer los valores de la consulta
-        try {
-            val consulta = "SELECT * FROM estanteria WHERE tipoLista=? ORDER BY id DESC"
-            db.rawQuery(consulta, arrayOf(tipoLista)).use { cursor ->
-                //Recorre los valores de la consulta
-                if (cursor.moveToFirst()) {
-                    do {
-                        //Valores extraidos de la base de datos
-                        val id = cursor.getLong(cursor.getColumnIndexOrThrow("id"))
-                        val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
-                        val autor = cursor.getString(cursor.getColumnIndexOrThrow("autor"))
-                        val portada = cursor.getString(cursor.getColumnIndexOrThrow("portada"))
-                        val tipoLista = cursor.getString(cursor.getColumnIndexOrThrow("tipoLista"))
-                        //Crear el objeto nuevoLibro con los datos anteriores y los añadimos a la lista
-                        val nuevoLibro = Libro(
-                            id,
-                            titulo,
-                            autor,
-                            portada,
-                            tipoLista
-                        )
-                        listadoLibros.add(nuevoLibro)
-                    } while (cursor.moveToNext())
-                }
-            }
-        }catch (e: Exception){
-            throw RuntimeException("Error al obtener la lista de libros con esta lista: ${e.message}", e)
-        } finally {
-            db.close()
-        }
-        return listadoLibros
-    }
-
-
+    /*
     /**
     METODO DELETE -> Borrar un libro de la BBDD
     @ idLibro es el indentificador del libro
