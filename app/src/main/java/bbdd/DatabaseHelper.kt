@@ -5,18 +5,21 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.bookrank.libro.Libro
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_NAME = "biblioteca.db"
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 3
         private const val TABLE_LIBROS = "estanteria"
         private const val COLUMN_ID = "id"
         private const val COLUMN_TITLE = "titulo"
         private const val COLUMN_AUTHOR = "autor"
         private const val COLUMN_COVER = "portada"
         private const val COLUMN_TYPE = "tipoLista"
+        private const val COLUMN_DATE = "fechaIngreso"
 
         private var instance:DatabaseHelper? = null
             fun getInstance(context: Context): DatabaseHelper{
@@ -27,7 +30,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             }
         /**
          * METODO READ -> Leer el registro
-         * @param nuevoLibro
+         * @param listadoLibros
          * @return el listado de libros
          * Para poder acceder desde otras funciones, se debe hacer que esta función sea un Método Estático (Companion Object)
          */
@@ -56,6 +59,44 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
             return listadoLibros
         }
+        /**
+         * METODO READ -> Leer el registro
+         * @param librosFecha
+         * @return los libros leidos y favoritos por fecha
+         * Para poder acceder desde otras funciones, se debe hacer que esta función sea un Método Estático (Companion Object)
+         */
+        fun getLibroPorFecha(context: Context, fechaIngreso: String): Any {
+            val db = getInstance(context).readableDatabase
+            val librosFecha = mutableListOf<Libro>()
+
+            try {
+                val consultaFecha = "SELECT titulo, autor, portada, tipoLista, fechaIngreso FROM estanteria WHERE tipoLista IN ('leído', 'favorito') ORDER BY fechaIngreso ASC"
+                db.rawQuery(consultaFecha, arrayOf(fechaIngreso)).use { cursor ->
+                    if (cursor.moveToFirst()) {
+                        do {
+                            val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
+                            val autor = cursor.getString(cursor.getColumnIndexOrThrow("autor"))
+                            val portada = cursor.getString(cursor.getColumnIndexOrThrow("portada"))
+                            val tipoLista =
+                                cursor.getString(cursor.getColumnIndexOrThrow("tipoLista"))
+                            val fechaIngresoString = cursor.getString(cursor.getColumnIndexOrThrow("fechaIngreso"))
+
+                            //Convertir String a LocalDate
+                            val fechaIngreso = LocalDate.parse(fechaIngresoString, DateTimeFormatter.ISO_LOCAL_DATE)
+
+                            //Crear el objeto Libro y agregarlo a la lista
+                            librosFecha.add(Libro(titulo, autor, portada, tipoLista, fechaIngreso))
+                        } while (cursor.moveToNext())
+                    }
+                }
+            } catch (e: Exception) {
+                throw RuntimeException("Error al obtener la lista de libros con esta fecha: ${e.message}", e)
+            } finally {
+                db.close()
+            }
+
+            return librosFecha
+        }
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -66,7 +107,8 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             titulo TEXT NOT NULL, 
             autor TEXT NOT NULL, 
             portada TEXT,
-            tipoLista TEXT NOT NULL
+            tipoLista TEXT NOT NULL,
+            fechaIngreso DATE 
         )
            
         """.trimIndent()

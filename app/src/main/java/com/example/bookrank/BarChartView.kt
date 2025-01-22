@@ -92,10 +92,5 @@ class BarChartView @JvmOverloads constructor(
 
         //Redibuja la vista
         invalidate()
-
-       /* data = newData
-        labels = newLabels
-        invalidate() //Redibuja la vista.
-   */
     }
 }
