@@ -1,10 +1,13 @@
 package com.example.bookrank.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import bbdd.DatabaseHelper
 import com.example.bookrank.R
+import com.example.bookrank.libro.Libro
 
 
 open class BibliotecaActivity : MainActivity() {
@@ -29,16 +32,15 @@ open class BibliotecaActivity : MainActivity() {
 
         //Configuración RecyclerView
         recyclerViewLeidos.layoutManager = LinearLayoutManager(this)
-
         recyclerViewPend.layoutManager = LinearLayoutManager(this)
         recyclerViewFav.layoutManager = LinearLayoutManager(this)
 
         //Cargar datos en los RecyclerView
-        cargarLibroPortipo("leido", recyclerViewLeidos,this)
+        cargarLibroPortipo("leido", recyclerViewLeidos, this)
         Log.d("cargarLibroPortipo", "Cargando libros leídos :$rcvLibrosLeidos")
         cargarLibroPortipo("pendiente", recyclerViewPend, this)
         cargarLibroPortipo("favorito", recyclerViewFav, this)
     }
-
 }
+
 
