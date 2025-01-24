@@ -1,39 +1,31 @@
 package com.example.bookrank.ui
 
 import android.os.Bundle
+import android.util.Log
+import bbdd.DatabaseHelper
 import com.example.bookrank.BarChartView
 import com.example.bookrank.R
 
 class EstadisticaActivity : MainActivity() {
+
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_estadistica)
         setupNavigationButtons() //Llamamos al método para iniciar los botones
 
-        //Referenciamos el gráfico
+        //Declaramos los componentes del Activity
         val barChartView = findViewById<BarChartView>(R.id.barChartView)
 
-        //Ejemplo de datos : Meses y actividad
-        val data = listOf(
-            "Enero" to 5,
-            "Febrero" to 3,
-            "Marzo" to 7,
-            "Abril" to 2,
-            "Mayo" to 6,
-            "Junio" to 4,
-            "Julio" to 8,
-            "Agosto" to 1,
-            "Septiembre" to 9,
-            "Octubre" to 2,
-            "Noviembre" to 6,
-            "Diciembre" to 3
-        )
-        barChartView.setData(data)
+        //Inicializa la base de datos y obtiene los datos
+        databaseHelper = DatabaseHelper(this)
+        val estadisticasPorMes = databaseHelper.getEstadisticaMensual(this)
+        Log.d("Estadisticas", "Datos obtenidos: $estadisticasPorMes")
+        showLog("Iniciando la base de datos y obtenidos los datos")
 
-     /*   //Actualizar los datos del grafico
-        val newData = floatArrayOf(10f, 20f, 30f, 40f, 50f)
-        val newLabels = arrayOf("Enero", "Febrero", "Marzo", "Abril", "Mayo")
-        barChartView.setData(newData, newLabels)
-        */
+        //Actualiza los datos del grafico
+        barChartView.setData(estadisticasPorMes)
+        showLog("Actualizados los datos del grafico")
     }
 }

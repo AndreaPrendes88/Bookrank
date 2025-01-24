@@ -132,7 +132,7 @@ class BookAdapter(private val books: List<BookData>, private val onBookSelected:
                     libroSeleccionado.title,
                     libroSeleccionado.author_name,
                     libroSeleccionado.cover_i,
-                    libroSeleccionado.tipoLista
+                    libroSeleccionado.tipoLista,
                      )
                     if (result) {
                          showLog("Libro añadido correctamente")
@@ -153,7 +153,7 @@ class BookAdapter(private val books: List<BookData>, private val onBookSelected:
                     libroSeleccionado.title,
                     libroSeleccionado.author_name,
                     libroSeleccionado.cover_i,
-                    libroSeleccionado.tipoLista
+                    libroSeleccionado.tipoLista,
                 )
                 if (result) {
                     showLog("Libro añadido correctamente")
@@ -174,7 +174,7 @@ class BookAdapter(private val books: List<BookData>, private val onBookSelected:
                     libroSeleccionado.title,
                     libroSeleccionado.author_name,
                     libroSeleccionado.cover_i,
-                    libroSeleccionado.tipoLista
+                    libroSeleccionado.tipoLista,
                 )
                 if (result) {
                     showLog("Libro añadido correctamente")
@@ -191,7 +191,8 @@ class BookAdapter(private val books: List<BookData>, private val onBookSelected:
         val title: String,
         val author_name: String,
         val cover_i: String?,
-        val tipoLista: String
+        val tipoLista: String,
+
     ) : Parcelable
 }
     fun showLog(message: String) {

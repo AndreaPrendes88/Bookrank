@@ -76,7 +76,7 @@ open class BuscarActivity: MainActivity() {
                         title = it.title,
                         author_name = it.author_name?.firstOrNull() ?: "",
                         cover_i = it.cover_i,
-                        tipoLista = ""
+                        tipoLista = "",
                     )
                 }
                     // Procesa el resultado en el hilo principal
