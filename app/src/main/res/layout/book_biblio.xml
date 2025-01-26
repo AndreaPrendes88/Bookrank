@@ -2,53 +2,80 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
 
     <ImageView
         android:id="@+id/bookCoverAdd"
         style="@style/coverURL"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="156dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:contentDescription="@string/bookCoverAdd"
+        android:scaleType="fitCenter"
+        app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/placeholder_book_cover" />
 
     <TextView
         android:id="@+id/bookTitleAdd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="78dp"
+        android:layout_height="31dp"
         android:layout_marginTop="12dp"
+        android:autoSizeTextType="uniform"
+        android:clickable="false"
         android:contentDescription="@string/bookTitleAdd"
         android:ellipsize="end"
+        android:focusable="false"
         android:fontFamily="@font/advent_pro_medium"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="TITULO"
         android:textAlignment="center"
         android:textColor="#666666"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/bookCoverAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="@+id/bookCoverAdd"
         app:layout_constraintTop_toBottomOf="@+id/bookCoverAdd"
         tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/bookAuthorAdd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="74dp"
+        android:layout_height="18dp"
         android:layout_marginTop="3dp"
+        android:clickable="false"
         android:contentDescription="@string/bookAuthorAdd"
+        android:focusable="false"
         android:fontFamily="@font/advent_pro_medium"
+        android:maxLines="1"
         android:text="Autor"
+        android:textAlignment="center"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/bookTitleAdd"
         app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="@+id/bookTitleAdd"
         app:layout_constraintTop_toBottomOf="@+id/bookTitleAdd"
         tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/btnPapelera"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="76dp"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:contentDescription="@string/btnPapelera"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="@+id/bookCoverAdd"
+        app:layout_constraintTop_toTopOf="@+id/bookCoverAdd"
+        app:srcCompat="@drawable/icons8_trash_24" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

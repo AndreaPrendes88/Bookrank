@@ -1,12 +1,15 @@
 package com.example.bookrank.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import bbdd.DatabaseHelper
 import com.bumptech.glide.Glide
@@ -67,8 +70,6 @@ fun cargarLibroPortipo(tipoLista: String, recyclerView: RecyclerView, context: C
 
     Log.d("cargarLibroPortipo", "Cargando libros para $tipoLista: $libros")
     //Configurar el adaptador y asignarlo al RecyclerView
-        val adapter = BiblioAdapter(libros)
-        recyclerView.adapter = adapter
-    }
-
-
+    val adapter = BiblioAdapter(libros)
+    recyclerView.adapter = adapter
+}

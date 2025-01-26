@@ -30,15 +30,19 @@
     //Activity Biblioteca
     <string name="listaTitulo">Titulo de la Activity</string>
     <string name="mi_biblioteca">Mi Biblioteca</string>
-    <string name="imgLeido">Imagen de libros leídos</string>"
+    <string name="imgLeido">Imagen de libros leídos</string>
     <string name="imgPendientes">Imagen de libros pendientes</string>
     <string name="imgFavoritos">Imagen de libros favoritos</string>
-    <string name="txtLeido">Texto de libros leídos</string>"
+    <string name="txtLeido">Texto de libros leídos</string>
     <string name="txtPendientes">Texto de libros pendientes</string>
     <string name="txtFavoritos">Texto de libros favoritos</string>
-    <string name="bookTitleAdd">Titulo del libro</string>"
+    <string name="bookTitleAdd">Titulo del libro</string>
     <string name="bookAuthorAdd">Author del libro</string>
     <string name="bookCoverAdd">Portada del libro</string>
+    <string name="btnPapelera">Papelera</string>
+    <string name="txtConfirmacion">¿Seguro que quieres eliminar este libro?</string>
+    <string name="btnConfirSi">Si</string>
+    <string name="btnConfirNo">No</string>
 
 
     <string name="lorem_ipsum">

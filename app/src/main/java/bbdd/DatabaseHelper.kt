@@ -150,11 +150,11 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         return estadisticas
     }
 
-    fun logTableData(){
+    fun logTableData() {
         val db = readableDatabase
-        try{
+        try {
             val cursor = db.rawQuery("SELECT * FROM estanteria", null)
-            if (cursor.moveToFirst()){
+            if (cursor.moveToFirst()) {
                 do {
                     val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
                     val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
@@ -165,26 +165,26 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                         cursor.getColumnIndexOrThrow("fechaIngreso")
                     )
                 } while (cursor.moveToNext())
-            }else {
+            } else {
                 Log.d("DatabaseHelper", "No hay datos en la tabla")
             }
             cursor.close()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             Log.e("DatabaseHelper", "Error al obtener los datos de la tabla", e)
         } finally {
             db.close()
         }
     }
-}
-    /*
+
     /**
     METODO DELETE -> Borrar un libro de la BBDD
     @ idLibro es el indentificador del libro
     @ return booleano (si ha ido bien o no)
-     */
+    */
     fun borrarLibro(idLibro: Long): Boolean{
         val db = writableDatabase
         val affectedRows = db.delete("estanterias", "id = ?", arrayOf(idLibro.toString()))
         db.close()
         return affectedRows != -1 //Devuelve true si se borró de manera correcta
-    }*/
+    }
+}

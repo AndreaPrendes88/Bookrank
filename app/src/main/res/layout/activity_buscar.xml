@@ -9,24 +9,28 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchLibro"
-        android:layout_width="379dp"
-        android:layout_height="63dp"
+        android:layout_width="380dp"
+        android:layout_height="75dp"
         android:background="@drawable/estilo_searchview"
         android:elevation="40dp"
         app:actionViewClass="android.widget.SearchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061"
+        app:layout_constraintVertical_bias="0.039"
         app:queryHint="@string/hint"
         app:showAsAction="ifRoom"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/resultLibros"
-        android:layout_width="400dp"
-        android:layout_height="641dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:clipToPadding="false"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"

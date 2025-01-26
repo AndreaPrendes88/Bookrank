@@ -29,9 +29,6 @@ class BookAdapter(private val books: List<BookData>, private val onBookSelected:
     val title: String = ""
     val cover_i: String? = null
 
-    //Lista de libros seleccionados (necesaria para poder añadir libros con btnAnadir)
-    private var libroSeleccionado: MutableList<BookData> = mutableListOf()
-
    /* //Función para obtener el libro seleccionado
     fun getSelectedBook(): MutableList<Libro> {
         return selectedBook
@@ -42,7 +39,7 @@ class BookAdapter(private val books: List<BookData>, private val onBookSelected:
         val title: TextView = itemView.findViewById(R.id.bookTitle)
         val author_name: TextView = itemView.findViewById(R.id.bookAuthor)
         val bookCover: ImageView = itemView.findViewById(R.id.bookCover)
-        val btnAnadir: ImageView = itemView.findViewById(R.id.btnAnadir)
+
 
         //Enlaza los datos de la clase libro con las vistas del ViewHolder
         fun bind(book: BookData) {

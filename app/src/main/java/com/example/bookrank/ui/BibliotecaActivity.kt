@@ -1,8 +1,12 @@
 package com.example.bookrank.ui
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bbdd.DatabaseHelper
@@ -31,9 +35,9 @@ open class BibliotecaActivity : MainActivity() {
         recyclerViewFav = rcvLibrosFav
 
         //Configuración RecyclerView
-        recyclerViewLeidos.layoutManager = LinearLayoutManager(this)
-        recyclerViewPend.layoutManager = LinearLayoutManager(this)
-        recyclerViewFav.layoutManager = LinearLayoutManager(this)
+        recyclerViewLeidos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewPend.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewFav.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         //Cargar datos en los RecyclerView
         cargarLibroPortipo("leido", recyclerViewLeidos, this)
@@ -42,5 +46,3 @@ open class BibliotecaActivity : MainActivity() {
         cargarLibroPortipo("favorito", recyclerViewFav, this)
     }
 }
-
-

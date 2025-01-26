@@ -1,9 +1,13 @@
 package com.example.bookrank.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookrank.R
@@ -28,6 +32,7 @@ open class BuscarActivity: MainActivity() {
         //Configuración RecyclerView
         recyclerView = resultLibros
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
 
         searchLibro.setOnQueryTextListener(createSearchListener(searchLibro))
     }
@@ -53,8 +58,8 @@ open class BuscarActivity: MainActivity() {
 
     //Función para realizar la búsqueda en la API
     private fun realizarBusqueda(query: String) {
-        //Registro para verificar el texto de búsqueda
-        showLog("Buscando: $query")
+        //Registro para verificar el texto de busqueda
+        showLog("Realizando búsqueda: $query")
         fetchBooks(query)
     }
 
@@ -87,14 +92,16 @@ open class BuscarActivity: MainActivity() {
                         showLog("Libros encontrados: ${response.docs}")
                     } else {
                         showLog("No se encontraron libros para la consulta: $query")
+                        Toast.makeText(this@BuscarActivity, "No se ha encontrado libros con el texto introducido", Toast.LENGTH_SHORT).show()
                     }
                 }
-                } catch (e: Exception) {
-                    // Maneja el error
-                    showLog("Error al buscar libros: ${e.message}")
-                } finally {
+            } catch (e: Exception) {
+                // Maneja el error
+                showLog("Error al buscar libros: ${e.message}")
+                Toast.makeText(this@BuscarActivity, "Error al buscar el libro", Toast.LENGTH_SHORT).show()
+            } finally {
                     isFetching = false //Resetea el estado de la llamada
-                }
+            }
         }
     }
 
@@ -112,10 +119,6 @@ open class BuscarActivity: MainActivity() {
         }
 
         resultLibros.adapter = adapter
-    }
-
-    private fun showLog(message: String) {
-        Log.d("BuscarActivity", message)
     }
 }
 
