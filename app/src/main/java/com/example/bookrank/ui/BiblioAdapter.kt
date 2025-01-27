@@ -1,7 +1,6 @@
 package com.example.bookrank.ui
 
-import android.annotation.SuppressLint
-import android.content.Context
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,17 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
         val tituloB: TextView = itemView.findViewById(R.id.bookTitleAdd)
         val autorB: TextView = itemView.findViewById(R.id.bookAuthorAdd)
         val coverB: ImageView = itemView.findViewById(R.id.bookCoverAdd)
+        val btnPapelera: ImageButton = itemView.findViewById(R.id.btnPapelera)
+
+        fun bind(libro: Libro){
+            btnPapelera.setOnClickListener{
+                onPapeleraClick?.invoke(libro)
+            }
+        }
     }
+
+    //Callback para manejar el click en el botón papelera
+    var onPapeleraClick: ((Libro) -> Unit)? = null
 
     //Infla el diseño del book_biblio para cada libro
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BiblioViewHolder {
@@ -42,6 +51,7 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
     //Vincula los datos de la clase Libro con los elementos de la vista
     override fun onBindViewHolder(holder: BiblioAdapter.BiblioViewHolder, position: Int) {
         val libroB = librosBiblio[position]
+        holder.bind(libroB)
         holder.tituloB.text = libroB.title
         holder.autorB.text = libroB.author_name
         Log.d("BiblioAdapter","Lista de libros: $librosBiblio")
@@ -63,15 +73,14 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
         } else{
             holder.coverB.setImageResource(R.drawable.placeholder_book_cover)
         }
+
+        //Declarar la variable onItemClick
+        var onItemClick: ((Libro) -> Unit)? = null
+
+        //Notificar el click del btnPapelera
+        holder.itemView.setOnClickListener {
+            val onItemClick = onItemClick
+            onItemClick?.invoke(libroB)
+        }
     }
 }
-
-    fun cargarLibroPortipo(tipoLista: String, recyclerView: RecyclerView, context: Context) {
-        //Usamos esa instancia para llamar al metodo
-        val libros = DatabaseHelper.getLibroPorLista(context, tipoLista) as? List<Libro> ?: emptyList()
-
-        Log.d("cargarLibroPortipo", "Cargando libros para $tipoLista: $libros")
-        //Configurar el adaptador y asignarlo al RecyclerView
-        val adapter = BiblioAdapter(libros)
-        recyclerView.adapter = adapter
-    }

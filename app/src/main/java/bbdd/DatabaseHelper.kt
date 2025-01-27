@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import bbdd.DatabaseHelper.Companion.getInstance
 import com.example.bookrank.libro.Libro
 import com.example.bookrank.ui.EstadisticaActivity
 import java.time.LocalDate
@@ -48,7 +49,8 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                             val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
                             val autor = cursor.getString(cursor.getColumnIndexOrThrow("autor"))
                             val portada = cursor.getString(cursor.getColumnIndexOrThrow("portada"))
-                            val tipoLista = cursor.getString(cursor.getColumnIndexOrThrow("tipoLista"))
+                            val tipoLista =
+                                cursor.getString(cursor.getColumnIndexOrThrow("tipoLista"))
                             listadoLibros.add(Libro(titulo, autor, portada, tipoLista))
                             Log.d("getLibroPorLista", "Obtenido libros para tipoLista: $tipoLista")
                             Log.d("getLibroPorLista", "Resultados encontrados: $listadoLibros.size")
@@ -65,6 +67,27 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             }
 
             return listadoLibros
+        }
+        /**
+         * METODO DELETE -> Borrar un libro de la BBDD
+         * @param
+         * @return booleano (si ha ido bien o no)
+         */
+        fun eliminarLibro(context: Context, libro: Libro): Boolean {
+            val db = getInstance(context).writableDatabase
+            return try {
+                val filasEliminadas = db.delete(
+                    "estanteria",
+                    "titulo =? AND autor =?",
+                    arrayOf(libro.title, libro.author_name)
+                )
+                filasEliminadas > 0
+            } catch (e: Exception) {
+                Log.e("DatabaseHelper", "Error al eliminar el libro", e)
+                false
+            } finally {
+                db.close()
+            }
         }
     }
 
@@ -181,11 +204,6 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     METODO DELETE -> Borrar un libro de la BBDD
     @ idLibro es el indentificador del libro
     @ return booleano (si ha ido bien o no)
-    */
-    fun borrarLibro(idLibro: Long): Boolean{
-        val db = writableDatabase
-        val affectedRows = db.delete("estanteria", "id = ?", arrayOf(idLibro.toString()))
-        db.close()
-        return affectedRows != -1 //Devuelve true si se borró de manera correcta
-    }
+     */
+
 }
