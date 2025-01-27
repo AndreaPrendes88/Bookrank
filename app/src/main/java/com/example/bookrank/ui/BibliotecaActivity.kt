@@ -1,23 +1,18 @@
 package com.example.bookrank.ui
 
-import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageButton
-import android.widget.Toast
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import bbdd.DatabaseHelper
 import com.example.bookrank.R
-import com.example.bookrank.libro.Libro
 
 
 open class BibliotecaActivity : MainActivity() {
-    private lateinit var recyclerViewLeidos: RecyclerView
+    private lateinit var recyclerViewLeido: RecyclerView
     private lateinit var recyclerViewPend: RecyclerView
     private lateinit var recyclerViewFav: RecyclerView
+    //private lateinit var btnPapelera: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,23 +20,35 @@ open class BibliotecaActivity : MainActivity() {
         setupNavigationButtons() //Llamamos al método para iniciar los botones
 
         //Declaración de los recyclerview
-        val rcvLibrosLeidos = findViewById<RecyclerView>(R.id.rcvLibrosLeidos)
+        val rcvLibrosLeido = findViewById<RecyclerView>(R.id.rcvLibrosLeido)
         val rcvLibrosPend = findViewById<RecyclerView>(R.id.rcvLibrosPend)
         val rcvLibrosFav = findViewById<RecyclerView>(R.id.rcvLibrosFav)
 
         //Inicialización de los recyclerview
-        recyclerViewLeidos = rcvLibrosLeidos
+        recyclerViewLeido = rcvLibrosLeido
         recyclerViewPend = rcvLibrosPend
         recyclerViewFav = rcvLibrosFav
 
         //Configuración RecyclerView
-        recyclerViewLeidos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerViewPend.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerViewFav.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewLeido.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewPend.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewFav.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
+        //Inicializacion del botón papelera
+      //  btnPapelera = findViewById(R.id.btnPapelera)
+
+        //Configurar inicial de los recyclerView
+        configurarRecyclerView()
+
+    }
+
+    private fun configurarRecyclerView() {
         //Cargar datos en los RecyclerView
-        cargarLibroPortipo("leido", recyclerViewLeidos, this)
-        Log.d("cargarLibroPortipo", "Cargando libros leídos :$rcvLibrosLeidos")
+        cargarLibroPortipo("leído", recyclerViewLeido, this)
+        Log.d("cargarLibroPortipo", "Cargando libros leídos :$recyclerViewLeido")
         cargarLibroPortipo("pendiente", recyclerViewPend, this)
         cargarLibroPortipo("favorito", recyclerViewFav, this)
     }

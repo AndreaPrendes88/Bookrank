@@ -36,7 +36,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
          * @return el listado de libros
          * Para poder acceder desde otras funciones, se debe hacer que esta función sea un Método Estático (Companion Object)
          */
-        fun getLibroPorLista(context: Context, tipoLista: String): Any {
+        fun getLibroPorLista(context: Context, tipoLista: String): List<Libro> {
             val db = getInstance(context).readableDatabase
             val listadoLibros = mutableListOf<Libro>()
 
@@ -48,9 +48,10 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                             val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
                             val autor = cursor.getString(cursor.getColumnIndexOrThrow("autor"))
                             val portada = cursor.getString(cursor.getColumnIndexOrThrow("portada"))
-                            val tipoLista =
-                                cursor.getString(cursor.getColumnIndexOrThrow("tipoLista"))
+                            val tipoLista = cursor.getString(cursor.getColumnIndexOrThrow("tipoLista"))
                             listadoLibros.add(Libro(titulo, autor, portada, tipoLista))
+                            Log.d("getLibroPorLista", "Obtenido libros para tipoLista: $tipoLista")
+                            Log.d("getLibroPorLista", "Resultados encontrados: $listadoLibros.size")
                         } while (cursor.moveToNext())
                     }
                 }
@@ -183,7 +184,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     */
     fun borrarLibro(idLibro: Long): Boolean{
         val db = writableDatabase
-        val affectedRows = db.delete("estanterias", "id = ?", arrayOf(idLibro.toString()))
+        val affectedRows = db.delete("estanteria", "id = ?", arrayOf(idLibro.toString()))
         db.close()
         return affectedRows != -1 //Devuelve true si se borró de manera correcta
     }

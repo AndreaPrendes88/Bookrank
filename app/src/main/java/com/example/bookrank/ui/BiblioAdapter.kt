@@ -56,6 +56,8 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
         if (!coverUrl.isNullOrEmpty()){
             Glide.with(holder.itemView.context)
                 .load(coverUrl) // Campo "cover" que contiene la URL de la imagen
+                .placeholder(R.drawable.placeholder_book_cover)
+                .error(R.drawable.placeholder_book_cover)
                 .into(holder.coverB) // ImageView donde se mostrará la imagen
             //holder.coverB.text = libroB.bookCover //TODO cambiar text por imagen
         } else{
@@ -64,12 +66,12 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
     }
 }
 
-fun cargarLibroPortipo(tipoLista: String, recyclerView: RecyclerView, context: Context) {
-    //Usamos esa instancia para llamar al metodo
-    val libros = DatabaseHelper.getLibroPorLista(context, tipoLista) as? List<Libro> ?: emptyList()
+    fun cargarLibroPortipo(tipoLista: String, recyclerView: RecyclerView, context: Context) {
+        //Usamos esa instancia para llamar al metodo
+        val libros = DatabaseHelper.getLibroPorLista(context, tipoLista) as? List<Libro> ?: emptyList()
 
-    Log.d("cargarLibroPortipo", "Cargando libros para $tipoLista: $libros")
-    //Configurar el adaptador y asignarlo al RecyclerView
-    val adapter = BiblioAdapter(libros)
-    recyclerView.adapter = adapter
-}
+        Log.d("cargarLibroPortipo", "Cargando libros para $tipoLista: $libros")
+        //Configurar el adaptador y asignarlo al RecyclerView
+        val adapter = BiblioAdapter(libros)
+        recyclerView.adapter = adapter
+    }

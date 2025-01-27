@@ -57,7 +57,7 @@
         tools:ignore="HardcodedText" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvLibrosLeidos"
+        android:id="@+id/rcvLibrosLeido"
         android:layout_width="410dp"
         android:layout_height="215dp"
         android:clipToPadding="false"
