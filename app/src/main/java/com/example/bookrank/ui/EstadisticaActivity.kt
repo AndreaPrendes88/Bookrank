@@ -20,7 +20,7 @@ class EstadisticaActivity : MainActivity() {
 
         //Inicializa la base de datos y obtiene los datos
         databaseHelper = DatabaseHelper(this)
-        val estadisticasPorMes = databaseHelper.getEstadisticaMensual(this)
+        val estadisticasPorMes = databaseHelper.getEstadisticaMensual()
         Log.d("Estadisticas", "Datos obtenidos: $estadisticasPorMes")
         showLog("Iniciando la base de datos y obtenidos los datos")
 

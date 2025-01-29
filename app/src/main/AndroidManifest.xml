@@ -8,9 +8,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_tipo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_tipo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookrank">
 
@@ -26,19 +26,16 @@
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
-        <activity android:name="com.example.bookrank.ui.EstadisticaActivity"
-            tools:ignore="DuplicateActivity">
-            <!-- No es necesario el intent-filter si no es MAIN -->
-        </activity>
         <activity android:name="com.example.bookrank.ui.BibliotecaActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
-        <activity android:name="com.example.bookrank.ui.ItemBookActivity"
-            android:exported="false"
+        <activity android:name="com.example.bookrank.ui.EstadisticaActivity"
             tools:ignore="DuplicateActivity">
             <!-- No es necesario el intent-filter si no es MAIN -->
         </activity>
+
+
         <activity android:name=".api.OpenLibraryResponse"
             android:exported="true"
             tools:ignore="Instantiatable,MissingClass">

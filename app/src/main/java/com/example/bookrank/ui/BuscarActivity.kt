@@ -1,13 +1,9 @@
 package com.example.bookrank.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookrank.R
@@ -113,11 +109,7 @@ open class BuscarActivity: MainActivity() {
         val resultLibros = findViewById<RecyclerView>(R.id.resultLibros)
 
         //Pasa el listener al adaptador para manejar la selección
-        val adapter = BookAdapter(books){ book ->
-            //selectedBook = book
-            showLog("Libro seleccionado: ${book.title}")
-        }
-
+        val adapter = BookAdapter(books, this)
         resultLibros.adapter = adapter
     }
 }

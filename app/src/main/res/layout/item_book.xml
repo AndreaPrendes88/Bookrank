@@ -77,41 +77,5 @@
         app:srcCompat="@drawable/anadir__2_"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/btnPendiente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:contentDescription="@string/btnPendiente"
-        android:text="Pendiente"
-        app:layout_constraintStart_toEndOf="@+id/btnAnadir"
-        app:layout_constraintTop_toBottomOf="@+id/bookAuthor"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/btnFavorito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:contentDescription="@string/btnFavorito"
-        android:text="Favorito"
-        app:layout_constraintEnd_toEndOf="@+id/btnPendiente"
-        app:layout_constraintTop_toBottomOf="@+id/btnPendiente"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/btnLeido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:contentDescription="@string/btnLeido"
-        android:text="Leido"
-        app:layout_constraintEnd_toStartOf="@+id/btnFavorito"
-        app:layout_constraintTop_toBottomOf="@+id/btnAnadir"
-        tools:ignore="HardcodedText" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,5 @@
 package com.example.bookrank.ui
 
-
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import bbdd.DatabaseHelper
 import com.bumptech.glide.Glide
 import com.example.bookrank.R
 import com.example.bookrank.libro.Libro
@@ -22,7 +19,7 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
         val tituloB: TextView = itemView.findViewById(R.id.bookTitleAdd)
         val autorB: TextView = itemView.findViewById(R.id.bookAuthorAdd)
         val coverB: ImageView = itemView.findViewById(R.id.bookCoverAdd)
-        val btnPapelera: ImageButton = itemView.findViewById(R.id.btnPapelera)
+        var btnPapelera: ImageButton = itemView.findViewById(R.id.btnPapelera)
 
         fun bind(libro: Libro){
             btnPapelera.setOnClickListener{
