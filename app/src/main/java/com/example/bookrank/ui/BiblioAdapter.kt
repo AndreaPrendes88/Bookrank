@@ -28,8 +28,6 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
         }
     }
 
-    //Callback para manejar el click en el botón papelera
-    var onPapeleraClick: ((Libro) -> Unit)? = null
 
     //Infla el diseño del book_biblio para cada libro
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BiblioViewHolder {
@@ -66,18 +64,18 @@ class BiblioAdapter(private val librosBiblio: List<Libro>): RecyclerView.Adapter
                 .placeholder(R.drawable.placeholder_book_cover)
                 .error(R.drawable.placeholder_book_cover)
                 .into(holder.coverB) // ImageView donde se mostrará la imagen
-            //holder.coverB.text = libroB.bookCover //TODO cambiar text por imagen
         } else{
             holder.coverB.setImageResource(R.drawable.placeholder_book_cover)
         }
-
-        //Declarar la variable onItemClick
-        var onItemClick: ((Libro) -> Unit)? = null
-
+        
         //Notificar el click del btnPapelera
         holder.itemView.setOnClickListener {
-            val onItemClick = onItemClick
             onItemClick?.invoke(libroB)
         }
     }
+    //Callback para manejar el click en el botón papelera
+    var onPapeleraClick: ((Libro) -> Unit)? = null
+
+    //Declarar la variable onItemClick
+    var onItemClick: ((Libro) -> Unit)? = null
 }

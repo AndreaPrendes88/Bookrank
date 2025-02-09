@@ -29,7 +29,7 @@
 
     //Activity Biblioteca
     <string name="listaTitulo">Titulo de la Activity</string>
-    <string name="mi_biblioteca">Mi Biblioteca</string>
+    <string name="mi_biblioteca">Biblioteca</string>
     <string name="imgLeido">Imagen de libros leídos</string>
     <string name="imgPendientes">Imagen de libros pendientes</string>
     <string name="imgFavoritos">Imagen de libros favoritos</string>

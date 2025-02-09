@@ -10,7 +10,6 @@ import com.example.bookrank.libro.Libro
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-
 class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
         //CREAMOS LAS TABLAS

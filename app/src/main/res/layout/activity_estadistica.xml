@@ -14,7 +14,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/advent_pro_medium"
-        android:text="TUS ESTADÍSTICAS"
+        android:text="Estadísticas"
         android:textAlignment="center"
         android:textColor="@color/darkblue"
         android:textSize="34sp"

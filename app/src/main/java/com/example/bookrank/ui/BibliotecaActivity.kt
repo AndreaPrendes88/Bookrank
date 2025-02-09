@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bbdd.DatabaseHelper
@@ -50,13 +49,13 @@ open class BibliotecaActivity : MainActivity() {
 
     private fun configurarRecyclerView() {
         //Cargar datos en los RecyclerView
-        cargarLibroPortipo("leído", recyclerViewLeido, this)
+        cargarLibroPorTipo("leído", recyclerViewLeido, this)
         Log.d("cargarLibroPortipo", "Cargando libros leídos :$recyclerViewLeido")
-        cargarLibroPortipo("pendiente", recyclerViewPend, this)
-        cargarLibroPortipo("favorito", recyclerViewFav, this)
+        cargarLibroPorTipo("pendiente", recyclerViewPend, this)
+        cargarLibroPorTipo("favorito", recyclerViewFav, this)
     }
 
-    private fun cargarLibroPortipo(tipoLista: String, recyclerView: RecyclerView, context: Context) {
+    private fun cargarLibroPorTipo(tipoLista: String, recyclerView: RecyclerView, context: Context) {
         val dbHelper = DatabaseHelper(context)
         //Usamos esa instancia para llamar al metodo
         val libros = when (tipoLista) {

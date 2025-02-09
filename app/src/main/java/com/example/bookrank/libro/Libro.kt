@@ -9,6 +9,5 @@ data class Libro(
     val bookCover: String,
     val fechaIngreso: LocalDate = LocalDate.now() //Mas moderno y no almacena hora exacta.
     )
-   // val editorial: String,
-   // val isbn: String
+
 

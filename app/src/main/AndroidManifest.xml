@@ -22,17 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.bookrank.ui.BuscarActivity"
-            tools:ignore="DuplicateActivity">
-            <!-- No es necesario el intent-filter si no es MAIN -->
+        <activity android:name="com.example.bookrank.ui.BuscarActivity">
         </activity>
-        <activity android:name="com.example.bookrank.ui.BibliotecaActivity"
-            tools:ignore="DuplicateActivity">
-            <!-- No es necesario el intent-filter si no es MAIN -->
+        <activity android:name="com.example.bookrank.ui.BibliotecaActivity">
         </activity>
-        <activity android:name="com.example.bookrank.ui.EstadisticaActivity"
-            tools:ignore="DuplicateActivity">
-            <!-- No es necesario el intent-filter si no es MAIN -->
+        <activity android:name="com.example.bookrank.ui.EstadisticaActivity">
         </activity>
 
 

@@ -75,7 +75,7 @@ open class BuscarActivity: MainActivity() {
                 val books = response.docs.map {
                     BookAdapter.BookData(
                         title = it.title,
-                        author_name = it.author_name?.firstOrNull() ?: "",
+                        author_name = it.author_name,
                         cover_i = it.cover_i,
                         tipoLista = "",
                     )

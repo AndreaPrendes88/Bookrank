@@ -53,7 +53,11 @@ class BookAdapter(private val books: List<BookData>, private val context: Contex
                 //Usar la imagen de portada por defecto
                 bookCoverView.setImageResource(R.drawable.placeholder_book_cover)
             } else {
-                val coverURL = "https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg"
+                Glide.with(itemView.context)
+                    .load("https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg")
+                    .placeholder(R.drawable.placeholder_book_cover)
+                    .error(R.drawable.error_book_cover)
+                    .into(bookCoverView)
             }
         }
     }
@@ -75,7 +79,7 @@ class BookAdapter(private val books: List<BookData>, private val context: Contex
 
         //Configurar los textos
         holder.titleView.text = libroAPI.title
-        holder.authorNameView.text = libroAPI.author_name.toString()
+        holder.authorNameView.text = libroAPI.author_name?.joinToString(", ") ?: "Autor desconocido"
         //Construir la URL de la portada
         val coverUrl = libroAPI.cover_i?.let {
             "https://covers.openlibrary.org/b/id/$it-M.jpg"
@@ -99,7 +103,7 @@ class BookAdapter(private val books: List<BookData>, private val context: Contex
             val dbHelper = DatabaseHelper(context)
             val exito = dbHelper.insertarLibro(
                 libroSeleccionado.title,
-                libroSeleccionado.author_name,
+                libroSeleccionado.author_name.toString(),
                 libroSeleccionado.cover_i,
             )
             if (exito) {
@@ -107,7 +111,8 @@ class BookAdapter(private val books: List<BookData>, private val context: Contex
                 Toast.makeText(holder.itemView.context, "Libro añadido correctamente", Toast.LENGTH_SHORT).show()
 
                 //Obtener el ID del libro recién insertado.
-                val libroId = dbHelper.getIdLibro(libroSeleccionado.title, libroSeleccionado.author_name, libroSeleccionado.cover_i)
+                val libroId = dbHelper.getIdLibro(libroSeleccionado.title,
+                    libroSeleccionado.author_name.toString(), libroSeleccionado.cover_i)
                 if (libroId != null) {
                     //Mostrar el cuadro de díalogo para elegir la categoría.
                     mostrarDialogoSeleccion(holder.itemView.context, dbHelper, libroId)
@@ -150,7 +155,7 @@ class BookAdapter(private val books: List<BookData>, private val context: Contex
     @Parcelize
     data class BookData( //<- Tiene que tener los mismos nombres que en la API
         val title: String,
-        val author_name: String,
+        val author_name: List<String>?,
         val cover_i: String?,
         val tipoLista: String,
 
